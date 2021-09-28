@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ImageClassifier">
         <activity
+            android:name=".CameraActivity"
+            android:exported="true" />
+        <activity
+            android:name=".GalleryActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
