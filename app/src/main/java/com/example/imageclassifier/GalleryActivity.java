@@ -42,40 +42,45 @@ public class GalleryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
 
+        //이전 Activity에서 전달한 데이터 읽어오기
         String data = getIntent().getStringExtra("data");
+        System.out.println("========================================================" + data);
         Log.e("데이터", data);
-        Toast.makeText(this, data, Toast.LENGTH_LONG).show();
+        // Toast.makeText(this, data, Toast.LENGTH_LONG).show();
 
-        // 뷰 찾아오기
+        //뷰 찾아오기
         imageView = findViewById(R.id.imageView);
         textView = findViewById(R.id.textView);
         selectBtn = findViewById(R.id.selectBtn);
+        //버튼을 누르면 동작할 코드
+        selectBtn.setOnClickListener(new View.OnClickListener(){
 
-        // 버튼을 누르면 동작할 코드
-        selectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 갤러리 화면 출력
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT)
-                        .setType("image/*");
-                // 응답을 받을 수 있돌고 Activity를 출력
-                // 액티비티가 화면에 출력되고
-                // 액티비티에서 데이터를 선택하면
-                // onActivityForResult(int requestCode, int resultCode, Intent data)
-                // data에 선택한 데이터가 넘어옵니다
+                //갤러리 화면 출력
+                Intent intent =
+                        new Intent(Intent.ACTION_GET_CONTENT)
+                                .setType("image/*");
+                //응답을 받을 수 있도록 Activity를 출력
+                //액티비티가 화면에 출력되고
+                //액티비티에서 데이터를 선택하면
+                //onActivityForResult(int requestCode, int resultCode, Intent data)
+                //가 호출됩니다.
+                //data 에 선택한 데이터가 넘어옵니다.
                 startActivityForResult(intent, GALLERY_REQUEST_CODE);
             }
         });
 
-        // 추론을 위한 클래스의 인스턴스 생성
+        //추론을 위한 클래스의 인스턴스 생성
         cls = new Classifier(this);
-
-        try {
+        try{
             cls.init();
-        } catch (Exception e) {
+        }catch(Exception e){
             Log.e(TAG, "초기화 실패");
         }
+
     }
+
     // startActivityForResult 로 Activity를 출력한 후
     // 출력된 Activity가 사라지면 호출되는 메소드
     @Override
@@ -112,7 +117,7 @@ public class GalleryActivity extends AppCompatActivity {
             }catch(Exception e){
                 Log.e(TAG, "이미지 가져오기 실패");
             }
-            
+
             // 읽어온 이미지가 있다면
             if (bitmap != null){
                 // 이미지를 가지고 추론하기

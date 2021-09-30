@@ -30,8 +30,8 @@ public class Classifier {
     }
 
     //모델 파일의 이름 설정
-    private static final String MODEL_NAME =
-            "mobilenet_imagenet_model.tflite";
+    private static final String MODEL_NAME = "mobilenet_imagenet_model.tflite";
+
     //추론 모델 변수
     private Model model;
 
@@ -45,7 +45,6 @@ public class Classifier {
     //레이블 파일 이름 과 목록을 저장할 변수
     private static final String LABEL_FILE = "labels.txt";
     private List<String> labels;
-
 
 
     //사용자 정의 초기화 메소드
@@ -146,11 +145,8 @@ public class Classifier {
 
         Map<Integer, Object> outputs = new HashMap<>();
         outputs.put(0, outputBuffer.getBuffer().rewind());
-
         //추론
         model.run(inputs, outputs);
-
-
         //결과를 해석
         Map<String, Float> output =
                 new TensorLabel(labels, outputBuffer)

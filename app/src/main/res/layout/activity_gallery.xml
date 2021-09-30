@@ -15,15 +15,16 @@
 
     <Button
         android:id="@+id/selectBtn"
-        android:text="갤러리 이미지 가져오기"
+        android:text = "갤러리 이미지 가져오기"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
     <TextView
         android:id="@+id/textView"
-        android:text="결과 출력"
+        android:text = "추론 결과 출력"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
+
 </LinearLayout>
